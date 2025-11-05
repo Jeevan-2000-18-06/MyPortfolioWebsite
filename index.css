@@ -431,6 +431,45 @@ header {
     margin: 20px 0;
 }
 
+/* CONTACT buttons layout fix */
+.contact-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    /* allow wrap on small widths */
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.contact-buttons .btn,
+.contact-buttons .btn-outline {
+    display: inline-flex;
+    /* consistent height/centered text */
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    white-space: nowrap;
+    /* keep words on one line */
+    flex: 1 1 220px;
+    /* grow, but wrap below ~220px */
+    max-width: 320px;
+}
+
+/* Stack on phones */
+@media (max-width:520px) {
+    .contact-buttons {
+        flex-direction: column;
+        align-items: stretch
+    }
+
+    .contact-buttons .btn,
+    .contact-buttons .btn-outline {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+
 .social-icons {
     display: flex;
     justify-content: center;
