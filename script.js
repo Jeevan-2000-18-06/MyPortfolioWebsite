@@ -34,3 +34,32 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+
+
+// hamburger toggle
+const navbar = document.querySelector('.navbar');
+const menuBtn = document.querySelector('.menu-toggle');
+if (menuBtn) {
+    menuBtn.addEventListener('click', () => navbar.classList.toggle('open'));
+    // close after clicking a link
+    document.querySelectorAll('.nav-links a').forEach(a =>
+        a.addEventListener('click', () => navbar.classList.remove('open'))
+    );
+}
+
+
+// force-download resume (works on GitHub Pages & iOS)
+function downloadResume(path, filename) {
+    fetch(path).then(res => res.blob()).then(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click();
+        a.remove(); URL.revokeObjectURL(url);
+    }).catch(console.error);
+}
+const dl = document.getElementById('downloadBtn');
+if (dl) dl.addEventListener('click', (e) => {
+    e.preventDefault();
+    downloadResume('Surabhi-Jeevansai.pdf', 'Surabhi-Jeevansai.pdf');
+});
